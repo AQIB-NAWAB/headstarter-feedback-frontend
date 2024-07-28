@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import FeedbackList from './FeedbackList';
 import axios from 'axios';
+import Modal from './Modal';
 const Dashboard = ( ) => {
   const [filter, setFilter] = useState('All');
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
 
   const getFeedbacks = async () => {
@@ -31,6 +38,9 @@ const Dashboard = ( ) => {
   return (
     <main className="dashboard-container">
       <h2>Dashboard</h2>
+      <button className='addBtn' 
+      onClick={() => setIsModalOpen(true)}
+      >Add Response</button>
       <label className="filter-label">
         Filter by Type:
         <select
@@ -46,6 +56,13 @@ const Dashboard = ( ) => {
         </select>
       </label>
       <FeedbackList feedbacks={filteredFeedbacks}  />
+
+      {
+        isModalOpen &&
+        <Modal closeModal={closeModal} />
+      }
+
+
     </main>
   );
 };
