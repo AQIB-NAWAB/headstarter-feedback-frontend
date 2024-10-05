@@ -7,12 +7,15 @@ import Footer from './components/Footer.jsx';
 import FeedbackForm from './components/FeedbackForm.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Notifications from './components/Notifications.jsx';
+import { ChatBot } from '@quickstart-ai/chatbot'
 
 function App() {
 
 
 
   return (
+    <>
+
     <Router>
       <div className="App">
       <Toaster />
@@ -25,6 +28,10 @@ function App() {
         <Footer />
       </div>
     </Router>
+    <ChatBot 
+   token='A1ED-2818E851-DE4B1457'
+    />
+    </>
   );
 }
 
